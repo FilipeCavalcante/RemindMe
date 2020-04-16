@@ -2,7 +2,7 @@ import React from 'react';
 import { HomeContainer, WidgetsArea, MainArea, ButtonArea } from '@assets/css/mainpage.styled';
 import { Button, View } from 'react-native';
 
-const MainPage = ({ navigation }) => {
+const MainPage = ({ navigation }: any) => {
 
     const goToNewTransaction = () => {
         navigation.navigate("AddTransaction");

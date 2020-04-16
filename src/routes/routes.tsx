@@ -4,7 +4,7 @@ import AddTransaction from '@pages/transactions/add-transaction'
 import TransactionsPage from '@pages/transactions/transactions';
 import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
 import { Transition } from 'react-native-reanimated';
-import { createAppContainer, createSwitchNavigator, CreateNavigatorConfig } from 'react-navigation'
+import { createAppContainer } from 'react-navigation'
 import { DefaultColors } from '@assets/css/global';
 
 const Routes = createAppContainer(
@@ -17,15 +17,14 @@ const Routes = createAppContainer(
         transition: (
             <Transition.Together>
                 <Transition.Out
-                    type="slide-left"
+                    type="slide-right"
                     durationMs={200}
                     interpolation="easeIn"
                 />
                 <Transition.In type="slide-left" durationMs={200} />
             </Transition.Together>
         ),
-    }
-    )
-)
+    })
+);
 
 export default Routes;
