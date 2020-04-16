@@ -8,6 +8,7 @@ const TransactionsPage = ({ navigation }) => {
     return (
         <TransactionPageContainer>
             <PageHeader pageTitle="All Transactions" returnFn={() => navigation.navigate("Home")} />
+            <Button title="Add" onPress={() => navigation.navigate("AddTransaction")} />
         </TransactionPageContainer>
     )
 }

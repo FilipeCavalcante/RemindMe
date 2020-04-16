@@ -19,6 +19,7 @@
             "@shared/*": ["./src/shared/*"],
             "@assets/*": ["./src/assets/*"],
             "@routes/*": ["./src/routes/*"],
+            "@models/*" : ["./src/models/*"],
         },
     },
     "exclude": [

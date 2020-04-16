@@ -1,13 +1,16 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 
-const AddTransaction = ({ navigation }) => {
+import PageHeader from '@components/pages/page.header';
+import { Transaction_AddForm } from '@components/transactions/add-form';
+import { TransactionPageContainer } from '@assets/css/transactions-page.styled';
+
+const AddTransaction = ({ navigation, props }: any) => {
     return (
-        <View>
-            <Text>Add new Transaction page</Text>
-            <Button title="Main page" onPress={() => { navigation.navigate("Home") }} />
-        </View>
+        <TransactionPageContainer>
+            <PageHeader pageTitle="Add Transaction" returnFn={() => navigation.navigate("TransactionsPage")} />
+            <Transaction_AddForm />
+        </TransactionPageContainer>
     )
 }
-
 export default AddTransaction;

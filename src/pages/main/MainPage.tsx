@@ -4,9 +4,6 @@ import { Button, View } from 'react-native';
 
 const MainPage = ({ navigation }: any) => {
 
-    const goToNewTransaction = () => {
-        navigation.navigate("AddTransaction");
-    }
     const goToTransactions = () => {
         navigation.navigate("TransactionsPage");
     }
@@ -17,7 +14,7 @@ const MainPage = ({ navigation }: any) => {
             <MainArea />
             <ButtonArea>
                 <View style={{ flex: 1, flexDirection: "column" }}>
-                    <Button title="Add" onPress={() => goToNewTransaction()} />
+                    
                 </View>
                 <View style={{ flex: 1, flexDirection: "column" }}>
                     <Button title="List All" onPress={() => goToTransactions()} />
