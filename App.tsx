@@ -5,8 +5,8 @@ import { SafeAreaView, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 import { DefaultColors } from '@assets/css/global';
 
-import MainPage from '@pages/main/MainPage';
-import Header from '@components/accounts/header';
+import MainPage from '@pages/main/main-page';
+import Header from '@components/accounts/accounts';
 // import MainDrawerNavigator from '@routes/drawer-routes';
 
 

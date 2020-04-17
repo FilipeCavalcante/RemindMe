@@ -1,7 +1,7 @@
 import React from 'react';
-import MainPage from '@pages/main/MainPage'
+import MainPage from '@pages/main/main-page'
 import AddTransaction from '@pages/transactions/add-transaction'
-import TransactionsPage from '@pages/transactions/transactions';
+import TransactionsPage from '@pages/transactions/transactions-page';
 import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
 import { Transition } from 'react-native-reanimated';
 import { createAppContainer } from 'react-navigation'

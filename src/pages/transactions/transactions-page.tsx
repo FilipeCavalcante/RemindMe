@@ -1,9 +1,9 @@
 import React from 'react';
-import { TransactionPageContainer } from '@assets/css/transactions-page.styled';
+import { TransactionPageContainer } from '@pages/transactions/transactions-page.styled';
 import { View, Text, Button } from 'react-native';
-import PageHeader from '@components/pages/page.header';
+import PageHeader from '@components/header/page.header';
 
-const TransactionsPage = ({ navigation }) => {
+export default function TransactionsPage({ navigation }: any) {
 
     return (
         <TransactionPageContainer>
@@ -12,5 +12,3 @@ const TransactionsPage = ({ navigation }) => {
         </TransactionPageContainer>
     )
 }
-
-export default TransactionsPage;

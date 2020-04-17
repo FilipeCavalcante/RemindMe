@@ -1,4 +1,7 @@
 
 Todo:
-  ☐ Create new TransactionForm
-  ☐ Create gateway to save data on device
+  ☐ Change name of `Transaction` to `Bills`
+  ☐ Define each fiel in the form to correctly Type
+  ☐ Upgrade and add validation on all fields
+  ☐ Create service to add new record locally
+  ☐ 

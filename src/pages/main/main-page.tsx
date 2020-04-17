@@ -1,5 +1,5 @@
 import React from 'react';
-import { HomeContainer, WidgetsArea, MainArea, ButtonArea } from '@assets/css/mainpage.styled';
+import { HomeContainer, WidgetsArea, MainArea, ButtonArea } from '@pages/main/main-page.styled';
 import { Button, View } from 'react-native';
 
 const MainPage = ({ navigation }: any) => {

@@ -1,12 +1,9 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { DefaultColors } from '@assets/css/global';
-import { PageHeaderContainer, PageHeaderTitle, IconArea, TitleArea } from '@assets/css/page-header.styled'
-import { Header } from 'react-native/Libraries/NewAppScreen';
+import { PageHeaderContainer, PageHeaderTitle, IconArea, TitleArea } from '@components/header/page-header.styled'
 
-
-const PageHeader = ({ pageTitle, returnFn }) => {
-
+export default function PageHeader({ pageTitle, returnFn }: any) {
     return (
         <PageHeaderContainer>
             <IconArea>
@@ -18,7 +15,3 @@ const PageHeader = ({ pageTitle, returnFn }) => {
         </PageHeaderContainer>
     )
 }
-
-
-
-export default PageHeader;

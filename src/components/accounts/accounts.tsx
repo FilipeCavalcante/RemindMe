@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeaderArea } from '@assets/css/header.styled';
+import { HeaderArea } from '@components/accounts/accounts.styled';
 
 const Header = () => {
 
