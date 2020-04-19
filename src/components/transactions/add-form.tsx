@@ -1,57 +1,78 @@
-import React from 'react';
-import { withFormik, Formik } from 'formik';
-import { FormContainer, Label, FieldLabel, SaveButton, formStyle } from '@components/transactions/forms.styled';
-import { ICreateTransactionModel } from '@models/transactions.model';
-import { Alert, TextInput, View, Button, Text, CheckBox } from 'react-native';
-import { TouchableWithoutFeedback, TouchableOpacity } from 'react-native-gesture-handler';
+import React, { useState } from 'react';
+import DatePicker from 'react-native-datepicker';
+import TextInputMask from 'react-native-text-input-mask';
+import { Formik } from 'formik';
+import { FormContainer, Label, FieldLabel, SaveButton, CancelButton, TextCancelButton, formStyle, TextSaveButton, InputText, GroupControls, Controls } from '@components/transactions/forms.styled';
+import { ICreateTransactionModel, createEntityInitialValues } from '@models/transactions.model';
+import { ActivityIndicator, Alert, TextInput, View, Button, Text, CheckBox } from 'react-native';
+import { saveTransaction } from '@services/transaction.service';
 
-export default function AddTransactionForm() {
+export default function AddTransactionForm(props: any) {
+    const [isLoading, setLoadingState] = useState(false);
 
-    const initialValues: ICreateTransactionModel = {
-        title: '',
-        barCode: '',
-        dueDate: new Date(),
-        stalments: false,
-        stalmentsQuantity: 1,
-        value: '0,00',
+    function goBack() {
+        props.cancelForm('form cancelado');
     }
 
-    function submitForm(entity: ICreateTransactionModel) {
+    function submitForm(values: ICreateTransactionModel) {
+        setLoadingState(true);
+        try {
+            saveTransaction(values)
+            Alert.alert("Items salvos com sucesso");
+            goBack();
+        }
+        catch (error) {
+            Alert.alert(error);
+        }
+        finally {
+            setLoadingState(false);
+        }
     }
 
     return (
-        <Formik initialValues={initialValues} onSubmit={() => Alert.alert("TESTING")}>
+        <Formik initialValues={createEntityInitialValues} onSubmit={values => submitForm(values)}>
             {({ handleChange, handleSubmit, values }) => (
                 <>
+                    {isLoading && <ActivityIndicator />}
                     <FormContainer>
                         <Label>
                             <FieldLabel>Titulo</FieldLabel>
-                            <TextInput value={values.title} style={formStyle.inputControl} onChange={handleChange('title')} />
+                            <InputText value={values.title} onChange={handleChange('title')} />
                         </Label>
                         <Label>
                             <FieldLabel>Value</FieldLabel>
-                            <TextInput value={values.value} style={formStyle.inputControl} onChange={handleChange('value')} />
+                            <TextInputMask style={formStyle.inputControl} onChangeText={handleChange('value')} mask={"R$ [999999],[99]"} keyboardType={'numeric'} />
                         </Label>
                         <Label>
                             <FieldLabel>Bar code</FieldLabel>
-                            <TextInput value={values.barCode} style={formStyle.inputControl} onChange={handleChange('barCode')} />
+                            <InputText value={values.barCode} onChange={handleChange('barCode')} keyboardType={'numeric'} />
                         </Label>
                         <Label>
                             <FieldLabel>Due date</FieldLabel>
-                            <TextInput value={values.dueDate?.toLocaleDateString()} style={formStyle.inputControl} onChange={handleChange('dueDate')} />
+                            <DatePicker date={values.dueDate} mode="date" onDateChange={handleChange('dueDate')} style={formStyle.inputControl}
+                                customStyles={{ dateInput: { borderWidth: 0 }, dateText: { fontSize: 18, alignSelf: 'flex-start' } }} />
                         </Label>
-                        <Label>
-                            <FieldLabel>Stalments</FieldLabel>
-                            <CheckBox value={values.stalments} style={formStyle.checkboxControl} />
-                        </Label>
-                        <Label>
-                            <FieldLabel>Stalments Quantity</FieldLabel>
-                            <TextInput value={values.stalmentsQuantity?.toString()} style={formStyle.inputControl} />
-                        </Label>
+                        <GroupControls>
+                            <Controls>
+                                <Label>
+                                    <FieldLabel>Stalments</FieldLabel>
+                                    <CheckBox value={values.stalments} style={formStyle.checkboxControl} />
+                                </Label>
+                            </Controls>
+                            <Controls>
+                                <Label>
+                                    <FieldLabel>Stalments Quantity</FieldLabel>
+                                    <InputText value={values.stalmentsQuantity?.toString()} onChange={handleChange('stalmentsQuantity')} keyboardType={'numeric'} />
+                                </Label>
+                            </Controls>
+                        </GroupControls>
                         <View style={{ flex: 1, marginTop: 40 }}>
                             <SaveButton onPress={handleSubmit}>
-                                <Text>Salvar</Text>
+                                <TextSaveButton>Salvar</TextSaveButton>
                             </SaveButton>
+                            <CancelButton onPress={goBack}>
+                                <TextCancelButton>Cancelar</TextCancelButton>
+                            </CancelButton>
                         </View>
                     </FormContainer>
                 </>

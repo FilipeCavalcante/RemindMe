@@ -3,8 +3,9 @@ import { DefaultColors } from '@assets/css/global';
 
 export const PageHeaderContainer = styled.View`
   flex: 1;
-  background-color: ${DefaultColors.color3};
+  background-color: ${DefaultColors.color1};
   border-bottom-width: 1px;
+  border-bottom-color: ${DefaultColors.color2};
   height: 50px;
 `;
 
@@ -20,5 +21,5 @@ export const TitleArea = styled(IconArea)`
 
 export const PageHeaderTitle = styled.Text`
     font-size: 20px;
-    color: ${DefaultColors.color1};
+    color: ${DefaultColors.color3};
 `;

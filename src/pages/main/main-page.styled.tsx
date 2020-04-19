@@ -4,7 +4,7 @@ import { DefaultColors } from "@assets/css/global";
 
 export const HomeContainer = styled.View`
   flex: 1;
-  background-color: ${DefaultColors.color3}
+  background-color: ${DefaultColors.color1}
 `;
 
 export const WidgetsArea = styled.View`

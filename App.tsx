@@ -14,8 +14,8 @@ const App: () => React$Node = () => {
   return (
     <>
       <NavigationContainer>
-        <StatusBar backgroundColor={DefaultColors.color3} />
-        <SafeAreaView style={{ flex: 1 }}>
+        <StatusBar backgroundColor={DefaultColors.color1} barStyle="light-content" />
+        <SafeAreaView style={{ flex: 1, backgroundColor: DefaultColors.color1 }}>
           {/* <MainDrawerNavigator /> */}
           <Header />
           <MainPage />

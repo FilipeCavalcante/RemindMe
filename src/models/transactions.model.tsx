@@ -20,3 +20,14 @@ export interface ITransactionModel {
     updatedAt: Date | undefined;
     updatedBy: string | undefined;
 }
+
+
+//Initial Values;
+export const createEntityInitialValues: ICreateTransactionModel = {
+    title: '',
+    barCode: '',
+    dueDate: new Date(),
+    stalments: false,
+    stalmentsQuantity: 1,
+    value: '0,00',
+}

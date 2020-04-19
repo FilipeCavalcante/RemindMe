@@ -7,7 +7,7 @@ export default function PageHeader({ pageTitle, returnFn }: any) {
     return (
         <PageHeaderContainer>
             <IconArea>
-                <Icon onPress={() => returnFn()} name="backspace" size={24} style={{ color: DefaultColors.color1 }} />
+                <Icon onPress={() => returnFn()} name="backspace" size={24} style={{ color: DefaultColors.color5 }} />
             </IconArea>
             <TitleArea>
                 <PageHeaderTitle>{pageTitle}</PageHeaderTitle>
