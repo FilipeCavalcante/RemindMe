@@ -1,10 +1,11 @@
 export interface ICreateTransactionModel {
     title: string | undefined;
     value: string | undefined;
-    barCode: string | undefined;
+    barCode?: string | undefined;
     dueDate: Date | undefined;
-    stalments: boolean | undefined;
-    stalmentsQuantity: number | undefined;
+    repeat: boolean | undefined;
+    quantityRepeat: number | undefined;
+    isGovernamental: boolean | undefined;
 }
 
 export interface ITransactionModel {
@@ -13,21 +14,23 @@ export interface ITransactionModel {
     value: string | undefined;
     barCode: string | undefined;
     dueDate: Date | undefined;
-    stalments: boolean | undefined;
-    stalmentsQuantity: number | undefined;
+    repeat: boolean | undefined;
+    quantityRepeat: number | undefined;
     createdAt: Date | undefined;
     createdBy: string | undefined;
     updatedAt: Date | undefined;
     updatedBy: string | undefined;
+    paymentDate?: Date | undefined;
+    overdue?: Boolean | undefined;
 }
 
 
 //Initial Values;
-export const createEntityInitialValues: ICreateTransactionModel = {
+export const createEntityInitialValues = {
     title: '',
     barCode: '',
     dueDate: new Date(),
-    stalments: false,
-    stalmentsQuantity: 1,
+    repeat: false,
+    quantityRepeat: 1,
     value: '0,00',
 }

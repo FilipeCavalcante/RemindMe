@@ -4,21 +4,20 @@ import { StyleSheet } from 'react-native';
 
 export const TransactionPageContainer = styled.ScrollView.attrs({})`
   flex: 1;
-  background-color: ${DefaultColors.color1};
 `;
 
 export const TransactionsList = styled.View`
   flex: 1;
+  margin-top: 6px;
+  margin-bottom: 10px;
 `;
 
-export const TransactionItem = styled.View`
+export const TransactionItem = styled.TouchableOpacity`
   flex: 1;
   flex-direction: row;
-  margin: 6px 16px;
-  padding: 8px;
-  background-color: ${DefaultColors.color5};
-  border-radius: 4px;
-  elevation: 5;
+  padding: 16px;
+  border-bottom-width: 1px;
+  border-bottom-color: ${DefaultColors.color4};
 `;
 
 export const TransactionItemInfo = styled.View`
@@ -26,18 +25,18 @@ export const TransactionItemInfo = styled.View`
 `;
 
 export const TransactionItemDateText = styled.Text`
-  color: ${DefaultColors.color1};
-  font-size: 10px;
+  color: ${DefaultColors.color3};
+  font-size: 12px;
 `;
 
 export const TransactionItemTitleText = styled(TransactionItemDateText)`
-  font-size: 14px;
+  font-size: 18px;
 `;
 
 export const TransactionItemValueText = styled.Text`
   align-self: flex-end;
   font-size: 16px;
-  color: ${DefaultColors.color1};
+  color: ${DefaultColors.color3};
   margin-top: 4px;
 `;
 

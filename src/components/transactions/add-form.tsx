@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import DatePicker from 'react-native-datepicker';
-import TextInputMask from 'react-native-text-input-mask';
 import { Formik } from 'formik';
-import { FormContainer, Label, FieldLabel, SaveButton, CancelButton, TextCancelButton, formStyle, TextSaveButton, InputText, GroupControls, Controls } from '@components/transactions/forms.styled';
-import { ICreateTransactionModel, createEntityInitialValues } from '@models/transactions.model';
-import { ActivityIndicator, Alert, TextInput, View, Button, Text, CheckBox } from 'react-native';
+import { FormContainer, ButtonArea } from '@components/transactions/forms.styled';
+import { createEntityInitialValues } from '@models/transactions.model';
+import { ActivityIndicator } from 'react-native';
 import { saveTransaction } from '@services/transaction.service';
+import { InputWithLabel, InputMask, InputDatePicker, CheckboxInput, FormButton } from '@components/controls/form-controls.component';
 
 export default function AddTransactionForm(props: any) {
     const [isLoading, setLoadingState] = useState(false);
@@ -14,66 +13,35 @@ export default function AddTransactionForm(props: any) {
         props.cancelForm('form cancelado');
     }
 
-    function submitForm(values: ICreateTransactionModel) {
+    const onSubmit = (values: any) => {
         setLoadingState(true);
-        try {
-            saveTransaction(values)
-            Alert.alert("Items salvos com sucesso");
-            goBack();
-        }
-        catch (error) {
-            Alert.alert(error);
-        }
-        finally {
+        saveTransaction(values);
+        setTimeout(() => {
             setLoadingState(false);
-        }
+            goBack();
+        }, 3000);
     }
 
     return (
-        <Formik initialValues={createEntityInitialValues} onSubmit={values => submitForm(values)}>
-            {({ handleChange, handleSubmit, values }) => (
+
+        <Formik initialValues={createEntityInitialValues} onSubmit={values => onSubmit(values)} >
+            {({ values, handleChange, handleSubmit }) => (
                 <>
                     {isLoading && <ActivityIndicator />}
                     <FormContainer>
-                        <Label>
-                            <FieldLabel>Titulo</FieldLabel>
-                            <InputText value={values.title} onChange={handleChange('title')} />
-                        </Label>
-                        <Label>
-                            <FieldLabel>Value</FieldLabel>
-                            <TextInputMask style={formStyle.inputControl} onChangeText={handleChange('value')} mask={"R$ [999999],[99]"} keyboardType={'numeric'} />
-                        </Label>
-                        <Label>
-                            <FieldLabel>Bar code</FieldLabel>
-                            <InputText value={values.barCode} onChange={handleChange('barCode')} keyboardType={'numeric'} />
-                        </Label>
-                        <Label>
-                            <FieldLabel>Due date</FieldLabel>
-                            <DatePicker date={values.dueDate} mode="date" onDateChange={handleChange('dueDate')} style={formStyle.inputControl}
-                                customStyles={{ dateInput: { borderWidth: 0 }, dateText: { fontSize: 18, alignSelf: 'flex-start' } }} />
-                        </Label>
-                        <GroupControls>
-                            <Controls>
-                                <Label>
-                                    <FieldLabel>Stalments</FieldLabel>
-                                    <CheckBox value={values.stalments} style={formStyle.checkboxControl} />
-                                </Label>
-                            </Controls>
-                            <Controls>
-                                <Label>
-                                    <FieldLabel>Stalments Quantity</FieldLabel>
-                                    <InputText value={values.stalmentsQuantity?.toString()} onChange={handleChange('stalmentsQuantity')} keyboardType={'numeric'} />
-                                </Label>
-                            </Controls>
-                        </GroupControls>
-                        <View style={{ flex: 1, marginTop: 40 }}>
-                            <SaveButton onPress={handleSubmit}>
-                                <TextSaveButton>Salvar</TextSaveButton>
-                            </SaveButton>
-                            <CancelButton onPress={goBack}>
-                                <TextCancelButton>Cancelar</TextCancelButton>
-                            </CancelButton>
-                        </View>
+                        <InputWithLabel value={values.title} label="Titulo" handleChange={handleChange('title')} placeholder="título" />
+                        <InputWithLabel value={values.barCode} label="Código de Barra" handleChange={handleChange('barCode')} placeholder="código de barra"
+                            keyboardType={'numeric'} />
+                        <InputMask label="Valor" placeholder="valor do boleto" handleChange={handleChange('value')} value={values.value} mask={"[999999],[99]"} />
+                        <InputDatePicker label="Vencimento" value={values.dueDate} mode="date" handleChange={handleChange('dueDate')} />
+                        <CheckboxInput label="Repetir?" value={values.repeat} handleChange={handleChange('repeat')} />
+                        <InputMask label="Número Repetições" placeholder="repetir quantas vezes" value={values.quantityRepeat} handleChange={handleChange('quantityRepeat')}
+                            mask={"[999]"} />
+
+                        <ButtonArea>
+                            <FormButton onPress={handleSubmit} label="Salvar" primary={true} />
+                            <FormButton onPress={goBack} label="Cancelar" />
+                        </ButtonArea>
                     </FormContainer>
                 </>
             )}

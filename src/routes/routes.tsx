@@ -13,7 +13,7 @@ const Routes = createAppContainer(
         TransactionsPage: TransactionsPage,
         AddTransaction: AddTransaction
     }, {
-        transitionViewStyle: { backgroundColor: DefaultColors.color3 },
+        // transitionViewStyle: { backgroundColor: DefaultColors.background },
         transition: (
             <Transition.Together>
                 <Transition.Out

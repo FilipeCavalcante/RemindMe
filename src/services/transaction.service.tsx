@@ -1,6 +1,6 @@
 import { ICreateTransactionModel } from '@models/transactions.model';
-import { save, retrieve } from '../gateways/gateway';
-import { GatewayConstants } from '../shared/keyConstants';
+import { save, retrieve } from '@gateways/gateway';
+import { GatewayConstants } from '@shared/keyConstants';
 
 
 export function saveTransaction(entity: ICreateTransactionModel) {

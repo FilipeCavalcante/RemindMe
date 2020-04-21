@@ -21,5 +21,6 @@ export const TitleArea = styled(IconArea)`
 
 export const PageHeaderTitle = styled.Text`
     font-size: 20px;
-    color: ${DefaultColors.color3};
+    color: ${DefaultColors.color5};
+    font-weight: bold
 `;

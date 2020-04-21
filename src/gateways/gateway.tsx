@@ -13,3 +13,7 @@ export async function retrieve(key: string) {
     const data = await AsyncStorage.getItem(key);
     return JSON.parse(data);
 }
+
+export function clearStorage() {
+    AsyncStorage.clear();
+}

@@ -4,4 +4,5 @@ export const DefaultColors = {
     color3: "#46494C",
     color4: "#4C5C68",
     color5: "#1985A1",
+    background: "#f6f6f6"
 }
