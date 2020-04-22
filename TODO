@@ -1,7 +1,14 @@
 
 Todo:
-  ☐ Change name of `Transaction` to `Bills`
-  ☐ Define each fiel in the form to correctly Type
+  ☐ Change name of `Transaction` to `Bills` @high 
+  ✔ Define each fiel in the form to correctly Type @done(20-04-21 21:34)
   ☐ Upgrade and add validation on all fields
-  ☐ Create service to add new record locally
-  ☐ 
+  ✔ Refactor Add-Form pages @done(20-04-21 21:34)
+
+  Buttons:
+    ✔ Create generic file for all form controls @done(20-04-21 21:36)
+  
+  Bills:
+    ☐ Create a new are to show a summary of the list
+    ☐ Sort items per DueDate asc (to show next bill to pay at first)
+  
