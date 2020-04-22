@@ -8,7 +8,28 @@ Todo:
   Buttons:
     ✔ Create generic file for all form controls @done(20-04-21 21:36)
   
-  Bills:
-    ☐ Create a new are to show a summary of the list
+  Bills page:
     ☐ Sort items per DueDate asc (to show next bill to pay at first)
-  
+    ☐ Create a summary area to show the SUM of all items added
+    ☐ Refactor the entire code
+    ☐ Add bar code information in each item
+    ☐ Mark with RED color items that is overdued
+    ☐ Mark with YELLOW color items that is about to overdue
+    ☐ Put to the end of list all items that is marked as PAID
+    ☐ Create a button are for other button that might need to exists @low 
+    ☐ Add Refresh functionality to reload data
+    ☐ Create menu for each item
+      ☐ Edit menu
+      ☐ Set as paid
+      ☐ Remove item
+
+      Filters:
+        ☐ Add filter area
+        ☐ Filter items per
+          ☐ Status (Paid or not paid)
+          ☐ Due date
+
+
+    New Form:
+
+    Edit Form:
