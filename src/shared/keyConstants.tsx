@@ -1,3 +1,3 @@
 export const GatewayConstants = {
-    transactionsKeyName: "transactionsKey"
+    payableKeyName: "payables"
 }

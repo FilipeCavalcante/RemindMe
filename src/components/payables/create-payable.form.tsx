@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
-import { FormContainer, ButtonArea } from '@components/transactions/forms.styled';
-import { createEntityInitialValues } from '@models/transactions.model';
+import { FormContainer, ButtonArea } from '@components/payables/payable.forms.styled';
+import { createEntityInitialValues } from '@models/payables.model';
 import { ActivityIndicator } from 'react-native';
-import { saveTransaction } from '@services/transaction.service';
+import { savePayable } from '@services/payables.service';
 import { InputWithLabel, InputMask, InputDatePicker, CheckboxInput, FormButton } from '@components/controls/form-controls.component';
 
-export default function AddTransactionForm(props: any) {
+export default function CreatePayableForm(props: any) {
     const [isLoading, setLoadingState] = useState(false);
 
     function goBack() {
-        props.cancelForm('form cancelado');
+        props.cancelForm('Cadatro cancelado');
     }
 
     const onSubmit = (values: any) => {
         setLoadingState(true);
-        saveTransaction(values);
+        savePayable(values);
         setTimeout(() => {
             setLoadingState(false);
             goBack();

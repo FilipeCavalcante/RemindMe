@@ -64,7 +64,7 @@ export const InputDatePicker = ({ label, value, mode, handleChange }: IInputDate
                 </Label>
             }
             <DatePicker date={value} mode={mode} onDateChange={handleChange} style={formStyle.inputControl}
-                customStyles={{ dateInput: { borderWidth: 0 }, dateText: { fontSize: 18, alignSelf: 'flex-start' } }} />
+                customStyles={{ dateInput: { borderWidth: 0 }, dateText: { fontSize: 14, alignSelf: 'flex-start', marginLeft: 4 } }} />
         </FieldGroup>
     )
 }

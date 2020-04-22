@@ -1,4 +1,4 @@
-export interface ICreateTransactionModel {
+export interface ICreatePayableDto {
     title: string | undefined;
     value: string | undefined;
     barCode?: string | undefined;
@@ -8,7 +8,7 @@ export interface ICreateTransactionModel {
     isGovernamental: boolean | undefined;
 }
 
-export interface ITransactionModel {
+export interface IPayableDto {
     id: number | undefined;
     title: string | undefined;
     value: string | undefined;

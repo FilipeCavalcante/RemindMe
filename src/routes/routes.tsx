@@ -1,17 +1,17 @@
 import React from 'react';
 import MainPage from '@pages/main/main-page'
-import AddTransaction from '@pages/transactions/add-transaction'
-import TransactionsPage from '@pages/transactions/transactions-page';
+import CreatePayablePage from '@pages/payables/create-payable.page'
+import PayablesPage from '@pages/payables/payables.page';
 import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
+
 import { Transition } from 'react-native-reanimated';
 import { createAppContainer } from 'react-navigation'
-import { DefaultColors } from '@assets/css/global';
 
 const Routes = createAppContainer(
     createAnimatedSwitchNavigator({
         Home: MainPage,
-        TransactionsPage: TransactionsPage,
-        AddTransaction: AddTransaction
+        PayablesPage: PayablesPage,
+        CreatePayablePage: CreatePayablePage
     }, {
         // transitionViewStyle: { backgroundColor: DefaultColors.background },
         transition: (

@@ -1,14 +1,24 @@
 
-Todo:
-  ☐ Change name of `Transaction` to `Bills` @high 
-  ✔ Define each fiel in the form to correctly Type @done(20-04-21 21:34)
-  ☐ Upgrade and add validation on all fields
+General:
+  ✔ Rename _Transaction_ to _Payable_ @high @critical @started(20-04-21 22:23) @done(20-04-21 23:13) @lasted(50m5s)
+    ✔ Rename pages @done(20-04-21 22:31)
+    ✔ Rename function names @done(20-04-21 22:31)
+    ✔ Rename variables names @done(20-04-21 23:13)
+    ✔ Rename references @done(20-04-21 22:31)
+    ✔ Renamte routes @done(20-04-21 22:31)
+    
   ✔ Refactor Add-Form pages @done(20-04-21 21:34)
+  ☐ Remove ClearStorage button from header once it is no needed anymore
+  ☐ Manter aplicação apenas no idioma PT-BR
+  ☐ Create README.MD onto GitHub
+
+  General Styles:
+
 
   Buttons:
     ✔ Create generic file for all form controls @done(20-04-21 21:36)
   
-  Bills page:
+  Bills:
     ☐ Sort items per DueDate asc (to show next bill to pay at first)
     ☐ Create a summary area to show the SUM of all items added
     ☐ Refactor the entire code
@@ -16,20 +26,37 @@ Todo:
     ☐ Mark with RED color items that is overdued
     ☐ Mark with YELLOW color items that is about to overdue
     ☐ Put to the end of list all items that is marked as PAID
-    ☐ Create a button are for other button that might need to exists @low 
+    ☐ Create area for other button that might need to exists @low 
     ☐ Add Refresh functionality to reload data
     ☐ Create menu for each item
       ☐ Edit menu
       ☐ Set as paid
       ☐ Remove item
 
-      Filters:
-        ☐ Add filter area
-        ☐ Filter items per
-          ☐ Status (Paid or not paid)
-          ☐ Due date
+    Filters:
+      ☐ Add filter area
+      ☐ Filter items per
+        ☐ Status (Paid or not paid)
+        ☐ Due date
 
 
     New Form:
-
+      ✔ Define each field in the form to correctly Type @done(20-04-21 21:34)
+      ☐ Add fields validations
+      ☐ Cancel button will have a confirmation dialog
+      ☐ Add area to show validation errors
+      ☐ BarCode should have maks? @low 
+      ☐ Change date format to BR format
+      ☐ Fix CHECKBOX that is breaking the application @critical 
+      ☐ Create repeated items if the REPEAT button is checked
+        //each item will have the same DueDate + 1month
+        //will repeat until the value informed on "RepeatQuantity"
+      ☐ Adjust font size for all fields
+        //due date font field is higher than the other ones
+      
     Edit Form:
+      ☐ Retrieve item by "key" property
+      ☐ Display information of auditing (Created_At and Modified_At)
+
+
+Archive:
