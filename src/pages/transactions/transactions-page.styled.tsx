@@ -17,7 +17,7 @@ export const TransactionItem = styled.TouchableOpacity`
   flex-direction: row;
   padding: 16px;
   border-bottom-width: 1px;
-  border-bottom-color: ${DefaultColors.color4};
+  border-bottom-color: ${DefaultColors.color2};
 `;
 
 export const TransactionItemInfo = styled.View`

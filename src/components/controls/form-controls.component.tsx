@@ -17,7 +17,7 @@ interface IInputWithLabelProperties {
     label?: string,
     value: any,
     handleChange: any,
-    placeholder: string,
+    placeholder?: string,
     keyboardType?: any
 }
 

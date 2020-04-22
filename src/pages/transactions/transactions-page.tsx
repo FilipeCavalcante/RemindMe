@@ -3,17 +3,13 @@ import PageHeader from '@components/header/page.header';
 
 import { listTransactions } from '@services/transaction.service';
 import { TransactionPageContainer, TransactionsList, TransactionItem, TransactionItemInfo, TransactionItemValueText, TransactionItemDateText, TransactionItemTitleText } from '@pages/transactions/transactions-page.styled';
-import { Button, ActivityIndicator, Text } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import { parseToCurrency } from '@shared/number.utils'
-import { clearStorage } from '@gateways/gateway';
+import { ButtonRounded } from '@components/buttons/generic-buttons';
 
 export default function TransactionsPage({ navigation }: any) {
     const [transactions, setTransactions] = useState([]);
     const [isLoading, setLoading] = useState(false);
-
-    const _clearStorage = () => {
-        clearStorage();
-    }
 
     const renderItems = () => {
         return (
@@ -44,14 +40,17 @@ export default function TransactionsPage({ navigation }: any) {
     }, [transactions]);
 
     return (
-        <TransactionPageContainer>
-            <PageHeader pageTitle="All Transactions" returnFn={() => navigation.navigate("Home")} />
-            {isLoading && <ActivityIndicator />}
-            <TransactionsList>
-                {renderItems()}
-            </TransactionsList>
-            <Button title="Add" onPress={() => navigation.navigate("AddTransaction")} />
-            <Button title="Clear" onPress={() => _clearStorage()} />
-        </TransactionPageContainer>
+        <>
+            <TransactionPageContainer>
+                <PageHeader pageTitle="All Transactions" returnFn={() => navigation.navigate("Home")} />
+                {isLoading && <ActivityIndicator />}
+                <TransactionsList>
+                    {renderItems()}
+                </TransactionsList>
+
+
+            </TransactionPageContainer>
+            <ButtonRounded icon="add" onClickFn={() => navigation.navigate("AddTransaction")}></ButtonRounded>
+        </>
     )
 }

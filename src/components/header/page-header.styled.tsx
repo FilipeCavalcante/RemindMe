@@ -6,21 +6,23 @@ export const PageHeaderContainer = styled.View`
   background-color: ${DefaultColors.color1};
   border-bottom-width: 1px;
   border-bottom-color: ${DefaultColors.color2};
-  height: 50px;
+  height: 44px;
+  flex-direction: row;
+  align-content: flex-start;
 `;
 
-export const IconArea = styled.View`
+export const TitleArea = styled.View`
     margin: 10px;
-    position: absolute;
+    flex: 1;
 `;
 
-export const TitleArea = styled(IconArea)`
-    right: 0px;
+export const IconArea = styled(TitleArea)`
+    max-width: 26px
 `;
-
 
 export const PageHeaderTitle = styled.Text`
     font-size: 20px;
     color: ${DefaultColors.color5};
-    font-weight: bold
+    font-weight: bold;
+    align-self: flex-end;
 `;
