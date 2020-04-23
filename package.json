@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "expo": "expo start"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.9.0",
@@ -22,10 +23,11 @@
     "@types/react-native-vector-icons": "^6.4.5",
     "@types/styled-components": "^5.1.0",
     "formik": "^2.1.4",
+    "moment": "^2.24.0",
     "react": "16.11.0",
     "react-native": "0.62.2",
-    "react-native-checkbox": "^2.0.0",
     "react-native-datepicker": "^1.7.2",
+    "react-native-elements": "^1.2.7",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-reanimated": "^1.8.0",
     "react-native-safe-area-context": "^0.7.3",

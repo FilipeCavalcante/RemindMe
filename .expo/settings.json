@@ -1,0 +1,8 @@
+{
+  "urlRandomness": "b3-epu",
+  "hostType": "lan",
+  "lanType": "ip",
+  "dev": true,
+  "minify": false,
+  "https": true
+}

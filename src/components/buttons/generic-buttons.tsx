@@ -11,10 +11,14 @@ interface IButtonProperties {
     isDisabled?: boolean;
 }
 
-export const ButtonRounded = ({ icon, onClickFn, isDisabled = false }: IButtonProperties) => {
+export const ButtonRounded = ({
+    icon,
+    onClickFn,
+    isDisabled = false,
+}: IButtonProperties) => {
     return (
         <ButtonRnd onPress={onClickFn}>
-            <Icon name={icon || "add"} size={24} style={{ color: "#fff" }} />
+            <Icon name={icon || 'add'} size={24} style={{ color: '#fff' }} />
         </ButtonRnd>
     );
-}
+};

@@ -13,7 +13,7 @@ General:
   ☐ Create README.MD onto GitHub
 
   General Styles:
-
+    ✔ Create generic LoadingIndicator @started(20-04-22 18:51) @done(20-04-22 19:06) @lasted(15m59s)
 
   Buttons:
     ✔ Create generic file for all form controls @done(20-04-21 21:36)
@@ -46,13 +46,13 @@ General:
       ☐ Cancel button will have a confirmation dialog
       ☐ Add area to show validation errors
       ☐ BarCode should have maks? @low 
-      ☐ Change date format to BR format
-      ☐ Fix CHECKBOX that is breaking the application @critical 
+      ✔ Change date format to BR format @started(20-04-22 18:15) @done(20-04-22 18:17) @lasted(2m14s)
+      ✔ Fix CHECKBOX that is breaking the application @critical @started(20-04-22 18:17) @done(20-04-22 18:42) @lasted(26m)
       ☐ Create repeated items if the REPEAT button is checked
         //each item will have the same DueDate + 1month
         //will repeat until the value informed on "RepeatQuantity"
-      ☐ Adjust font size for all fields
-        //due date font field is higher than the other ones
+      ✔ Adjust font size for all fields @done(20-04-21 23:33)
+        //due date font field is bigger than the other ones
       
     Edit Form:
       ☐ Retrieve item by "key" property

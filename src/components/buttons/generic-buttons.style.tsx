@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { DefaultColors } from '@assets/css/global'
+import { DefaultColors } from '@assets/css/global';
 
 export const ButtonRnd = styled.TouchableOpacity`
     position: absolute;
@@ -11,5 +11,5 @@ export const ButtonRnd = styled.TouchableOpacity`
     background-color: ${DefaultColors.color5};
     bottom: 10px;
     align-self: center;
-    elevation: 6
+    elevation: 6;
 `;
