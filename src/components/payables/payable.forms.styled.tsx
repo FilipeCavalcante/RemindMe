@@ -3,6 +3,7 @@ import { DefaultColors } from '@assets/css/global';
 import { StyleSheet } from 'react-native';
 
 export const FormContainer = styled.View`
+    flex: 1;
     margin: 20px;
 `;
 

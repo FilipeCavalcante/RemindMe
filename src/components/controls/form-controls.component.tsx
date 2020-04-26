@@ -45,16 +45,16 @@ export const InputWithLabel = ({
 }: IInputWithLabelProperties) => {
     return (
         <FieldGroup>
-            {label && label !== '' && (
+            { label && label !== '' && (
                 <Label>
-                    <FieldLabel>{label}</FieldLabel>
+                    <FieldLabel>{ label }</FieldLabel>
                 </Label>
-            )}
+            ) }
             <InputText
-                value={value}
-                onChangeText={handleChange}
-                placeholder={placeholder}
-                keyboardType={keyboardType}
+                value={ value }
+                onChangeText={ handleChange }
+                placeholder={ placeholder }
+                keyboardType={ keyboardType }
             />
         </FieldGroup>
     );
@@ -69,17 +69,17 @@ export const InputMask = ({
 }: IInputMaskProperties) => {
     return (
         <FieldGroup>
-            {label !== '' && (
+            { label !== '' && (
                 <Label>
-                    <FieldLabel>{label}</FieldLabel>
+                    <FieldLabel>{ label }</FieldLabel>
                 </Label>
-            )}
+            ) }
             <TextInputMask
-                style={formStyle.inputControl}
-                placeholder={placeholder}
-                onChangeText={handleChange}
-                mask={mask}
-                keyboardType={'numeric'}
+                style={ formStyle.inputControl }
+                placeholder={ placeholder }
+                onChangeText={ handleChange }
+                mask={ mask }
+                keyboardType={ 'numeric' }
             />
         </FieldGroup>
     );
@@ -93,43 +93,43 @@ export const InputDatePicker = ({
 }: IInputDatePickerProperties) => {
     return (
         <FieldGroup>
-            {label && label !== '' && (
+            { label && label !== '' && (
                 <Label>
-                    <FieldLabel>{label}</FieldLabel>
+                    <FieldLabel>{ label }</FieldLabel>
                 </Label>
-            )}
+            ) }
             <DatePicker
                 format="DD/MM/YYYY"
-                date={value}
-                mode={mode}
-                onDateChange={handleChange}
-                style={formStyle.inputControl}
-                customStyles={{
+                date={ value }
+                mode={ mode }
+                onDateChange={ handleChange }
+                style={ formStyle.inputControl }
+                customStyles={ {
                     dateInput: { borderWidth: 0 },
                     dateText: {
                         fontSize: 14,
                         alignSelf: 'flex-start',
                         marginLeft: 4,
                     },
-                }}
+                } }
             />
         </FieldGroup>
     );
 };
 
 export const CheckboxInput = ({ label, value, handleChange }: any) => {
-    const [_checked, setChecked] = useState(value);
+    const [ _checked, setChecked ] = useState(value);
     return (
         <FieldGroup>
             <CheckBox
-                checked={_checked}
-                title={label}
-                size={20}
-                onPress={() => {
+                checked={ _checked }
+                title={ label }
+                size={ 20 }
+                onPress={ () => {
                     setChecked(!_checked);
-                }}
-                titleProps={{ adjustsFontSizeToFit: true }}
-                containerStyle={{ borderWidth: 0, marginLeft: -6 }}
+                } }
+                titleProps={ { adjustsFontSizeToFit: true } }
+                containerStyle={ { borderWidth: 0, marginLeft: -6 } }
             />
         </FieldGroup>
     );
@@ -142,8 +142,8 @@ export const FormButton = ({
     primary = false,
 }: IButtonProperties) => {
     return (
-        <Button onPress={onPress} btnPrimary={primary}>
-            <TextButton btnPrimary={primary}>{label}</TextButton>
+        <Button onPress={ onPress } btnPrimary={ primary }>
+            <TextButton btnPrimary={ primary }>{ label }</TextButton>
         </Button>
     );
 };

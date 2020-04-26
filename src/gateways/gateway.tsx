@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-community/async-storage';
+import { Guid } from 'guid-typescript'
 
-function setAuditiDates(entity: any) {
+function setAuditDates(entity: any) {
     if (!entity.hasOwnProperty('createdAt')) {
         entity['createdAt'] = new Date();
     }
@@ -14,14 +15,9 @@ function setAuditiDates(entity: any) {
 
 async function setKey(entity: any, keyName: string, stored: any) {
     if (!entity.hasOwnProperty('id')) {
-        const keys =
-            stored.length === 0
-                ? [0]
-                : stored.map((item: any) => item['id'] || 0);
-        entity['id'] = keys.sort().reverse()[0] + 1;
+        entity['id'] = Guid.create();
     }
-
-    setAuditiDates(entity);
+    setAuditDates(entity);
 
     return entity;
 }
@@ -35,14 +31,14 @@ export async function save(key: string, data: any, callback?: any) {
 
     await AsyncStorage.setItem(
         key,
-        JSON.stringify([...stored, dataToSave]),
+        JSON.stringify([ ...stored, dataToSave ]),
         callback,
     );
 }
 
 export async function retrieve(key: string) {
     const data = await AsyncStorage.getItem(key);
-    return JSON.parse(data);
+    return JSON.parse(data || '[]');
 }
 
 export function clearStorage() {

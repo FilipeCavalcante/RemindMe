@@ -17,8 +17,8 @@ export const ButtonRounded = ({
     isDisabled = false,
 }: IButtonProperties) => {
     return (
-        <ButtonRnd onPress={onClickFn}>
-            <Icon name={icon || 'add'} size={24} style={{ color: '#fff' }} />
+        <ButtonRnd onPress={ onClickFn }>
+            <Icon name={ icon || 'add' } size={ 24 } style={ { color: '#fff' } }/>
         </ButtonRnd>
     );
 };

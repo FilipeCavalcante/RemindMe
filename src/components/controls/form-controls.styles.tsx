@@ -32,7 +32,9 @@ export const FieldLabel = styled.Text`
     margin-bottom: 4px;
 `;
 
-export const Label = styled.View``;
+export const Label = styled.View`
+    
+`;
 
 export const InputText = styled.TextInput`
     border-color: ${DefaultColors.color2};

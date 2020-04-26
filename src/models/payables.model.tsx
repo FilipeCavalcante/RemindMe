@@ -11,7 +11,7 @@ export interface ICreatePayableDto {
 }
 
 export interface IPayableDto {
-    id: number | undefined;
+    id: string;
     title: string | undefined;
     value: string | undefined;
     barCode: string | undefined;
@@ -37,7 +37,7 @@ export const createEntityInitialValues = {
 };
 
 export class PayableDto implements IPayableDto {
-    id: number | undefined;
+    id: string = '';
     title: string | undefined;
     value: string | undefined;
     barCode: string | undefined;

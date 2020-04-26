@@ -6,8 +6,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { DefaultColors } from '@assets/css/global';
 
 import MainPage from '@pages/main/main-page';
-import Header from '@components/accounts/accounts';
-// import MainDrawerNavigator from '@routes/drawer-routes';
 
 const App: () => React$Node = () => {
     return (
@@ -19,8 +17,6 @@ const App: () => React$Node = () => {
                         flex: 1,
                         backgroundColor: DefaultColors.background,
                     }}>
-                    {/* <MainDrawerNavigator /> */}
-                    <Header />
                     <MainPage />
                 </SafeAreaView>
             </NavigationContainer>

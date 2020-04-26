@@ -16,63 +16,52 @@ import { parseToCurrency } from '@shared/number.utils';
 import { ButtonRounded } from '@components/buttons/generic-buttons';
 import { GeneralConst } from '@shared/general.constants';
 import { LoadingIndicator } from '@components/controls/indicators.component';
-import { IPayableDto } from '@models/payables.model';
+import { IPayableDto, PayableDto } from '@models/payables.model';
+import { Alert, FlatList } from 'react-native';
 
 export default function PayablesPage({ navigation }: any) {
-    const [payablesList, setPayables] = useState<IPayableDto[]>([]);
-    const [isLoading, setLoading] = useState(true);
+    const [ payablesList, setPayables ] = useState<IPayableDto[]>([]);
+    const [ isLoading, setLoading ] = useState(true);
 
     async function _fetch() {
         let result = await retrievePayables();
         setPayables(result);
         setLoading(false);
-        console.debug(result);
     }
 
     useEffect(() => {
         if (payablesList && payablesList.length === 0) {
             _fetch();
         }
-    }, [payablesList]);
+    }, [ payablesList ]);
 
     return (
         <>
-            <LoadingIndicator isVisible={isLoading} size={60} />
-            <PayablesPageContainer>
-                <PageHeader
-                    pageTitle="Todos os boletos"
-                    returnFn={() => navigation.navigate(GeneralConst.homePage)}
-                />
-                <PayablesList>
-                    {payablesList &&
-                        payablesList.length > 0 &&
-                        payablesList.map((item, index) => (
-                            <PayableItem key={index}>
-                                <PayableItemInfo flexValue={1}>
-                                    <PayableItemTitleText>
-                                        {item.title}
-                                    </PayableItemTitleText>
-                                    <PayableItemDateText>
-                                        vencimento:{' '}
-                                        {moment(item.dueDate).format(
-                                            'DD/MM/YYYY',
-                                        )}
-                                    </PayableItemDateText>
-                                </PayableItemInfo>
-                                <PayableItemInfo flexValue={1}>
-                                    <PayableItemValueText>
-                                        {parseToCurrency(item.value, 2)}
-                                    </PayableItemValueText>
-                                </PayableItemInfo>
-                            </PayableItem>
-                        ))}
-                </PayablesList>
-            </PayablesPageContainer>
+            <LoadingIndicator isVisible={ isLoading } size={ 60 }/>
+            <PageHeader pageTitle="Boletos" openDrawer={ navigation.openDrawer }/>
+            <FlatList data={ payablesList }
+                      renderItem={ ({ item }) =>
+                          <PayableItem>
+                              <PayableItemInfo flexValue={ 1 }>
+                                  <PayableItemTitleText>
+                                      { item.title }
+                                  </PayableItemTitleText>
+                                  <PayableItemDateText>
+                                      vencimento: { item.dueDate }
+                                  </PayableItemDateText>
+                              </PayableItemInfo>
+                              <PayableItemInfo flexValue={ 1 }>
+                                  <PayableItemValueText>
+                                      { parseToCurrency(item.value, 2) }
+                                  </PayableItemValueText>
+                              </PayableItemInfo>
+                          </PayableItem>
+                      }
+                      keyExtractor={ (item, index) => item.id }/>
             <ButtonRounded
                 icon="add"
-                onClickFn={() =>
-                    navigation.navigate(GeneralConst.createPayablePage)
-                }></ButtonRounded>
+                onClickFn={ () => navigation.navigate(GeneralConst.createPayablePage) }/>
         </>
-    );
+    )
+        ;
 }

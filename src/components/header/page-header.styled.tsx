@@ -2,8 +2,7 @@ import styled from 'styled-components/native';
 import { DefaultColors } from '@assets/css/global';
 
 export const PageHeaderContainer = styled.View`
-    flex: 1;
-    background-color: ${DefaultColors.color1};
+    background-color: ${DefaultColors.background};
     border-bottom-width: 1px;
     border-bottom-color: ${DefaultColors.color2};
     height: 44px;

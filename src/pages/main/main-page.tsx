@@ -7,23 +7,13 @@ import {
 } from '@pages/main/main-page.styled';
 import { Button, View } from 'react-native';
 import { GeneralConst } from '@shared/general.constants';
+import PageHeader from '@components/header/page.header';
 
 const MainPage = ({ navigation }: any) => {
     return (
         <HomeContainer>
-            <WidgetsArea />
-            <MainArea />
-            <ButtonArea>
-                <View style={{ flex: 1, flexDirection: 'column' }}></View>
-                <View style={{ flex: 1, flexDirection: 'column' }}>
-                    <Button
-                        title="List All"
-                        onPress={() =>
-                            navigation.navigate(GeneralConst.payablePage)
-                        }
-                    />
-                </View>
-            </ButtonArea>
+           <PageHeader pageTitle="Home" openDrawer={ navigation.openDrawer }/>
+          
         </HomeContainer>
     );
 };
