@@ -8,8 +8,6 @@ export const PayablesPageContainer = styled.ScrollView.attrs({})`
 
 export const PayablesList = styled.View`
     flex: 1;
-    margin-top: 6px;
-    margin-bottom: 10px;
 `;
 
 export const PayableItem = styled.TouchableOpacity`

@@ -5,11 +5,13 @@ import MainPage from '@pages/main/main-page';
 import PayablesPage from '@pages/payables/payables.page';
 import Sidebar from '@components/sidebar/sidebar.component';
 import CreatePayablePage from '@pages/payables/create-payable.page';
+import SettingsPage from '@pages/settings/settings.page';
 
 
 export const AppDrawerRouteNavigation = createDrawerNavigator({
         Main: { screen: MainPage, },
-        Payables: { screen: PayablesPage },
+        SettingsPage: { screen: SettingsPage },
+        PayablesPage: { screen: PayablesPage },
         CreatePayablePage: { screen: CreatePayablePage }
     },
     {

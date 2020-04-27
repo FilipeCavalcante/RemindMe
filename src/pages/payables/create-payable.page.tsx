@@ -7,8 +7,8 @@ import { GeneralConst } from '@shared/general.constants';
 import { Alert } from 'react-native';
 
 export default function CreatePayablePage({ navigation, props }: any) {
-    const returnToPayablePage = (msg: string) => {
-        navigation.goBack();
+    const returnToPayablePage = () => {
+        navigation.navigate(GeneralConst.payablePage);
     };
 
     return (

@@ -1,5 +1,6 @@
 export const GeneralConst = {
     payablePage: 'PayablesPage',
     createPayablePage: 'CreatePayablePage',
-    homePage: 'Home',
+    homePage: 'Main',
+    settingsPage: 'SettingsPage'
 };

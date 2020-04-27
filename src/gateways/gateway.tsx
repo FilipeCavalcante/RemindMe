@@ -13,20 +13,38 @@ function setAuditDates(entity: any) {
     }
 }
 
-async function setKey(entity: any, keyName: string, stored: any) {
+function setKey(entity: any, keyName: string) {
     if (!entity.hasOwnProperty('id')) {
-        entity['id'] = Guid.create();
+        const newId = Guid.create();
+        entity['id'] = newId.hasOwnProperty('value') ? newId['value'] : newId;
     }
     setAuditDates(entity);
 
     return entity;
 }
 
+export async function saveMultiple(key: string, data: any[], callback?: any) {
+    let stored = await retrieve(key);
+    if (!stored) stored = [];
+
+    if (data.length > 0) {
+        data.forEach((item) => {
+            item = setKey(item, key);
+        });
+
+        await AsyncStorage.setItem(
+            key,
+            JSON.stringify([ ...stored, ...data ]),
+            callback
+        );
+    }
+}
+
 export async function save(key: string, data: any, callback?: any) {
     let stored = await retrieve(key);
     if (!stored) stored = [];
 
-    let dataToSave = await setKey(data, key, stored);
+    let dataToSave = setKey(data, key);
     console.debug(dataToSave);
 
     await AsyncStorage.setItem(

@@ -4,7 +4,7 @@ import {
     FormContainer,
     ButtonArea,
 } from '@components/payables/payable.forms.styled';
-import { createEntityInitialValues } from '@models/payables.model';
+import { createEntityInitialValues, CreatePayableDto } from '@models/payables.model';
 import { savePayable } from '@services/payables.service';
 import {
     InputWithLabel,
@@ -16,79 +16,80 @@ import {
 import { LoadingIndicator } from '@components/controls/indicators.component';
 
 export default function CreatePayableForm(props: any) {
-    const [isLoading, setLoadingState] = useState(false);
+    const [ isLoading, setLoadingState ] = useState(false);
 
     function goBack() {
-        props.cancelForm('Cadatro cancelado');
+        props.cancelForm();
     }
 
     const onSubmit = (values: any) => {
+        debugger;
         setLoadingState(true);
-        savePayable(values);
-        setTimeout(() => {
-            setLoadingState(false);
-            goBack();
-        }, 3000);
+        const entity  = new CreatePayableDto(values);
+        savePayable(entity);
+        setLoadingState(false);
+        goBack();
     };
 
     return (
         <Formik
-            initialValues={createEntityInitialValues}
-            onSubmit={(values) => onSubmit(values)}>
-            {({ values, handleChange, handleSubmit }) => (
+            initialValues={ createEntityInitialValues }
+            onSubmit={ (values) => onSubmit(values) }>
+            { ({ values, handleChange, handleSubmit, setFieldValue }) => (
                 <>
-                    <LoadingIndicator isVisible={isLoading} size={60} />
+                    <LoadingIndicator isVisible={ isLoading } size={ 60 }/>
                     <FormContainer>
                         <InputWithLabel
-                            value={values.title}
+                            value={ values.title }
                             label="Titulo"
-                            handleChange={handleChange('title')}
+                            handleChange={ handleChange('title') }
                             placeholder="título"
                         />
                         <InputWithLabel
-                            value={values.barCode}
+                            value={ values.barCode }
                             label="Código de Barra"
-                            handleChange={handleChange('barCode')}
+                            handleChange={ handleChange('barCode') }
                             placeholder="código de barra"
-                            keyboardType={'numeric'}
+                            keyboardType={ 'numeric' }
                         />
                         <InputMask
                             label="Valor"
                             placeholder="valor do boleto"
-                            handleChange={handleChange('value')}
-                            value={values.value}
-                            mask={'[999999],[99]'}
+                            handleChange={ handleChange('value') }
+                            value={ values.value }
+                            mask={ '[999999],[99]' }
                         />
                         <InputDatePicker
                             label="Vencimento"
-                            value={values.dueDate}
+                            value={ values.dueDate }
                             mode="date"
-                            handleChange={handleChange('dueDate')}
+                            handleChange={ handleChange('dueDate') }
                         />
                         <CheckboxInput
                             label="Repetir?"
-                            value={values.repeat}
-                            handleChange={handleChange('repeat')}
+                            value={ values.repeat }
+                            fieldName="repeat"
+                            setFieldValue={ setFieldValue }
                         />
                         <InputMask
                             label="Número Repetições"
                             placeholder="repetir quantas vezes"
-                            value={values.quantityRepeat}
-                            handleChange={handleChange('quantityRepeat')}
-                            mask={'[999]'}
+                            value={ values.quantityRepeat }
+                            handleChange={ handleChange('quantityRepeat') }
+                            mask={ '[999]' }
                         />
 
                         <ButtonArea>
                             <FormButton
-                                onPress={handleSubmit}
+                                onPress={ handleSubmit }
                                 label="Salvar"
-                                primary={true}
+                                primary={ true }
                             />
-                            <FormButton onPress={goBack} label="Cancelar" />
+                            <FormButton onPress={ goBack } label="Cancelar"/>
                         </ButtonArea>
                     </FormContainer>
                 </>
-            )}
+            ) }
         </Formik>
     );
 }

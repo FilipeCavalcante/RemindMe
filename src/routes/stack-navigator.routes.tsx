@@ -1,4 +1,5 @@
-﻿import React from 'react';
+﻿/*
+import React from 'react';
 import { AppDrawerRouteNavigation } from '@routes/drawer.routes';
 import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
 import CreatePayablePage from '@pages/payables/create-payable.page';
@@ -13,4 +14,4 @@ export const AppNavigator = createAnimatedSwitchNavigator(
     },
     {
         initialRouteName: 'Drawer'
-    });
+    });*/

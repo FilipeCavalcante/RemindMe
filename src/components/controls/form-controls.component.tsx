@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TextInputMask from 'react-native-text-input-mask';
 import DatePicker from 'react-native-datepicker';
 
@@ -99,7 +99,6 @@ export const InputDatePicker = ({
                 </Label>
             ) }
             <DatePicker
-                format="DD/MM/YYYY"
                 date={ value }
                 mode={ mode }
                 onDateChange={ handleChange }
@@ -117,8 +116,11 @@ export const InputDatePicker = ({
     );
 };
 
-export const CheckboxInput = ({ label, value, handleChange }: any) => {
+export const CheckboxInput = ({ label, value, fieldName, setFieldValue }: any) => {
     const [ _checked, setChecked ] = useState(value);
+    useEffect(() => {
+        setFieldValue(fieldName, _checked)
+    }, [ _checked ]);
     return (
         <FieldGroup>
             <CheckBox

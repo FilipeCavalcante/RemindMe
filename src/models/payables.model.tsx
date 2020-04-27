@@ -36,6 +36,39 @@ export const createEntityInitialValues = {
     value: '0,00',
 };
 
+export class CreatePayableDto implements ICreatePayableDto {
+    barCode: string | undefined;
+    dueDate: Date | undefined;
+    isGovernamental: boolean | undefined;
+    quantityRepeat: number | undefined;
+    repeat: boolean | undefined;
+    title: string | undefined;
+    value: string | undefined;
+
+    constructor(data?: any) {
+        this.init(data);
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.title = data['title'];
+            this.barCode = data['barCode'];
+            this.dueDate = new Date(data['dueDate']);
+            this.repeat = data['repeat'];
+            this.quantityRepeat = data['quantityRepeat'];
+            this.value = data['value'];
+        }
+    }
+
+    static clone(data: any): ICreatePayableDto {
+        data = typeof data === 'object' ? data : {};
+        const result = new CreatePayableDto();
+        result.init(data);
+        return result;
+    }
+
+}
+
 export class PayableDto implements IPayableDto {
     id: string = '';
     title: string | undefined;
@@ -64,7 +97,7 @@ export class PayableDto implements IPayableDto {
             this.overdue = data['overdue'] || false;
             this.paymentDate = new Date(data['paymentDate']) || null;
             this.repeat = data['repeat'];
-            this.quantityRepeat = data['repeatQuantity'];
+            this.quantityRepeat = data['quantityRepeat'];
             this.updatedAt = new Date(data['updatedAt']) || null;
             this.updatedBy = '-1';
             this.value = data['value'];

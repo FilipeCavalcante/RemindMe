@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const SidebarItem = ({ item, navigate }: any) => {
     return (
-        <TouchableOpacity style={ styles.listItem } onPress={ () => {navigate(item.name)} }>
+        <TouchableOpacity style={ styles.listItem } onPress={ () => {navigate(item.route)} }>
             <Icon name={ item.icon } size={ 24 } style={styles.icon}/>
             <Text style={ styles.title }>{ item.name }</Text>
         </TouchableOpacity>
