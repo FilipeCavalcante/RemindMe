@@ -10,12 +10,6 @@
             "type": "reactnative",
             "request": "attach"
         },
-        {
-            "name": "Debug Android",
-            "cwd": "${workspaceFolder}",
-            "type": "reactnative",
-            "request": "launch",
-            "platform": "android"
-        },
+       
     ]
 }

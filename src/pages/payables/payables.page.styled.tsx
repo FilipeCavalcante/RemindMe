@@ -15,7 +15,7 @@ export const PayableItem = styled.TouchableOpacity`
     flex-direction: row;
     border-bottom-width: 1px;
     border-bottom-color: ${DefaultColors.color2};
-    padding: 10px;
+    padding: 14px;
 `;
 
 export const PayableItemInfo = styled.View`
@@ -29,6 +29,10 @@ export const PayableItemDateText = styled.Text`
 
 export const PayableItemTitleText = styled(PayableItemDateText)`
     font-size: 16px;
+`;
+
+export const PayableItemBarcodeText = styled(PayableItemDateText)`
+    color: red;
 `;
 
 export const PayableItemValueText = styled.Text`

@@ -12,8 +12,7 @@ import PageHeader from '@components/header/page.header';
 const MainPage = ({ navigation }: any) => {
     return (
         <HomeContainer>
-           <PageHeader pageTitle="Home" openDrawer={ navigation.openDrawer }/>
-          
+            <PageHeader pageTitle='Home' openDrawer={navigation.openDrawer} />
         </HomeContainer>
     );
 };

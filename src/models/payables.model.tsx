@@ -1,5 +1,10 @@
 import { parseToCurrency } from '@shared/number.utils';
 
+export interface IGroupPayableDto {
+    monthName: string;
+    entries: IPayableDto[];
+}
+
 export interface ICreatePayableDto {
     title: string | undefined;
     value: string | undefined;
@@ -51,12 +56,12 @@ export class CreatePayableDto implements ICreatePayableDto {
 
     init(data?: any) {
         if (data) {
-            this.title = data['title'];
-            this.barCode = data['barCode'];
-            this.dueDate = new Date(data['dueDate']);
-            this.repeat = data['repeat'];
-            this.quantityRepeat = data['quantityRepeat'];
-            this.value = data['value'];
+            this.title = data.title;
+            this.barCode = data.barCode;
+            this.dueDate = new Date(data.dueDate);
+            this.repeat = data.repeat;
+            this.quantityRepeat = data.quantityRepeat;
+            this.value = data.value;
         }
     }
 
@@ -66,7 +71,6 @@ export class CreatePayableDto implements ICreatePayableDto {
         result.init(data);
         return result;
     }
-
 }
 
 export class PayableDto implements IPayableDto {
@@ -88,19 +92,19 @@ export class PayableDto implements IPayableDto {
 
     init(data?: any) {
         if (data) {
-            this.title = data['title'];
-            this.barCode = data['barCode'];
-            this.id = data['id'];
-            this.createdAt = new Date(data['createdAt']) || null;
+            this.title = data.title;
+            this.barCode = data.barCode;
+            this.id = data.id;
+            this.createdAt = new Date(data.createdAt) || null;
             this.createdBy = '-1';
-            this.dueDate = data['dueDate'];
-            this.overdue = data['overdue'] || false;
-            this.paymentDate = new Date(data['paymentDate']) || null;
-            this.repeat = data['repeat'];
-            this.quantityRepeat = data['quantityRepeat'];
-            this.updatedAt = new Date(data['updatedAt']) || null;
+            this.dueDate = new Date(data.dueDate);
+            this.overdue = data.overdue || false;
+            this.paymentDate = new Date(data.paymentDate) || null;
+            this.repeat = data.repeat;
+            this.quantityRepeat = data.quantityRepeat;
+            this.updatedAt = new Date(data.updatedAt) || null;
             this.updatedBy = '-1';
-            this.value = data['value'];
+            this.value = parseToCurrency(data.value, 2);
         }
     }
 
