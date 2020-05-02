@@ -32,9 +32,7 @@ export const FieldLabel = styled.Text`
     margin-bottom: 4px;
 `;
 
-export const Label = styled.View`
-    
-`;
+export const Label = styled.View``;
 
 export const InputText = styled.TextInput`
     border-color: ${DefaultColors.color2};
@@ -52,14 +50,17 @@ export const Button = styled.TouchableOpacity`
     align-self: center;
     bottom: 10px;
     height: 60px;
-    border: 1px solid ${DefaultColors.color5};
+    border: 1px solid
+        ${(props) =>
+            props.btnPrimary ? DefaultColors.color5 : DefaultColors.color1};
     border-radius: 10px;
     margin: 10px;
     background-color: ${(props) =>
-        props.btnPrimary ? DefaultColors.color5 : DefaultColors.background};
+        props.btnPrimary ? DefaultColors.color5 : DefaultColors.white};
 `;
 
 export const TextButton = styled.Text`
     font-size: 16px;
-    color: ${(props) => (props.btnPrimary ? '#fff' : DefaultColors.color5)};
+    color: ${(props) =>
+        props.btnPrimary ? DefaultColors.white : DefaultColors.color5};
 `;

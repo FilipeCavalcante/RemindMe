@@ -14,23 +14,17 @@ export default function PageHeader({ pageTitle, returnFn, openDrawer }: any) {
     return (
         <PageHeaderContainer>
             <IconArea>
-                <TouchableOpacity >
-                    <Icon name="apps" size={ 24 } onPress={ () => openDrawer() }/>
+                <TouchableOpacity>
+                    <Icon
+                        name='apps'
+                        color={DefaultColors.white}
+                        size={24}
+                        onPress={() => openDrawer()}
+                    />
                 </TouchableOpacity>
             </IconArea>
-          {/*  <IconArea>
-                <Icon
-                    onPress={ () => returnFn() }
-                    name="backspace"
-                    size={ 24 }
-                    style={ { color: DefaultColors.color5 } }
-                />
-            </IconArea>*/}
-           {/* <IconArea>
-                <Icon name="nuke" size={ 24 } onPress={ clearStorage }/>
-            </IconArea>*/}
             <TitleArea>
-                <PageHeaderTitle>{ pageTitle }</PageHeaderTitle>
+                <PageHeaderTitle>{pageTitle}</PageHeaderTitle>
             </TitleArea>
         </PageHeaderContainer>
     );

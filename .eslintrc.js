@@ -8,5 +8,6 @@ module.exports = {
     plugins: ['prettier'],
     rules: {
         'object-curly-spacing': 0,
+        'no-inline-styles': 0,
     },
 };

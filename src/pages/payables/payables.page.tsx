@@ -12,30 +12,49 @@ import {
     PayableItemTitleText,
     PayableItemBarcodeText,
 } from '@pages/payables/payables.page.styled';
-import { ButtonRounded } from '@components/buttons/generic-buttons';
+import { ButtonRounded, IconButton } from '@components/buttons/generic-buttons';
 import { GeneralConst } from '@shared/general.constants';
 import { LoadingIndicator } from '@components/controls/indicators.component';
 import { IPayableDto } from '@models/payables.model';
 import { SortType } from '@shared/enums/sortType.enum';
 import { Alert } from 'react-native';
+import Clipboard from '@react-native-community/clipboard';
+import { ButtonArea } from '@components/buttons/generic-buttons.style';
 
 export default function PayablesPage({ navigation }: any) {
     const [payablesList, setPayables] = useState<IPayableDto[]>([]);
     const [isLoading, setLoading] = useState(true);
     const [lastTap, setLastTap] = useState(null);
+    const [lastTapItemId, setLastTapItemId] = useState('');
+    const [refreshPage, setRefreshPage] = useState(true);
 
-    const handleDoubleTap = () => {
+    const handleDoubleTap = (item: IPayableDto) => {
         const now = Date.now();
         const DOUBLE_PRESS_DELAY = 300;
-        if (lastTap && now - lastTap < DOUBLE_PRESS_DELAY) {
-            copyBarCode();
+        if (
+            item.id === lastTapItemId &&
+            lastTap &&
+            now - lastTap < DOUBLE_PRESS_DELAY
+        ) {
+            copyBarCode(item);
         } else {
             setLastTap(now);
+            setLastTapItemId(item.id);
         }
     };
 
-    const copyBarCode = () => {
-        Alert.alert('bar code');
+    const copyBarCode = (item: IPayableDto) => {
+        if (!item.barCode || item.barCode === '') {
+            Alert.alert('Nenhum código de barra cadastrado');
+            return;
+        }
+
+        Clipboard.setString(item.barCode);
+        Alert.alert('Código de barra copiado para área de trabalho');
+    };
+
+    const isOverdue = (item: IPayableDto) => {
+        return item.dueDate < new Date();
     };
 
     useEffect(() => {
@@ -44,10 +63,18 @@ export default function PayablesPage({ navigation }: any) {
             result = sortPayableBy(result, SortType.String, 'dueDate', 'asc');
             setPayables(result);
             setLoading(false);
+            setRefreshPage(false);
         }
 
-        loadPayablesList();
-    }, []);
+        if (refreshPage) {
+            setLoading(true);
+            loadPayablesList();
+        }
+    }, [refreshPage]);
+
+    const doRefreshPage = () => {
+        setRefreshPage(true);
+    };
 
     return (
         <>
@@ -60,8 +87,9 @@ export default function PayablesPage({ navigation }: any) {
                 <PayablesList>
                     {payablesList.map((item) => (
                         <PayableItem
+                            isOverdued={isOverdue(item)}
                             key={item.id}
-                            onPress={() => handleDoubleTap()}>
+                            onPress={() => handleDoubleTap(item)}>
                             <PayableItemInfo flexValue={1}>
                                 <PayableItemTitleText>
                                     {item.title}
@@ -85,12 +113,19 @@ export default function PayablesPage({ navigation }: any) {
                     ))}
                 </PayablesList>
             </PayablesPageContainer>
-            <ButtonRounded
-                icon='add'
-                onClickFn={() =>
-                    navigation.navigate(GeneralConst.createPayablePage)
-                }
-            />
+            <ButtonArea>
+                <ButtonRounded
+                    icon='add'
+                    onClickFn={() =>
+                        navigation.navigate(GeneralConst.createPayablePage)
+                    }
+                />
+                <IconButton
+                    size={28}
+                    icon='refresh'
+                    onClickFn={doRefreshPage}
+                />
+            </ButtonArea>
         </>
     );
 }

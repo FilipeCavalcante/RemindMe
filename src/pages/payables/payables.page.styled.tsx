@@ -13,13 +13,19 @@ export const PayablesList = styled.View`
 export const PayableItem = styled.TouchableOpacity`
     flex: 1;
     flex-direction: row;
+    background-color: ${DefaultColors.white};
+    margin: 6px;
     border-bottom-width: 1px;
-    border-bottom-color: ${DefaultColors.color2};
+    border-bottom-color: ${DefaultColors.color1};
+    border-left-width: 4px;
+    border-left-color: ${(props) =>
+        props.isOverdued ? DefaultColors.danger : DefaultColors.success};
     padding: 14px;
 `;
 
 export const PayableItemInfo = styled.View`
     flex: ${(p) => p.flexValue};
+    align-self: center;
 `;
 
 export const PayableItemDateText = styled.Text`
@@ -32,14 +38,13 @@ export const PayableItemTitleText = styled(PayableItemDateText)`
 `;
 
 export const PayableItemBarcodeText = styled(PayableItemDateText)`
-    color: red;
+    color: ${DefaultColors.color5};
 `;
 
 export const PayableItemValueText = styled.Text`
     align-self: flex-end;
-    font-size: 16px;
+    font-size: 20px;
     color: ${DefaultColors.color3};
-    margin-top: 8px;
 `;
 
 export const styles = StyleSheet.create({
