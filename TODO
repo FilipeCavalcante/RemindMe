@@ -8,8 +8,8 @@ General:
     ✔ Renamte routes @done(20-04-21 22:31)
     
   ✔ Refactor Add-Form pages @done(20-04-21 21:34)
-  ☐ Remove ClearStorage button from header once it is no needed anymore
-  ☐ Manter aplicação apenas no idioma PT-BR
+  ✔ Remove ClearStorage button from header once it is no needed anymore @done(20-05-02 19:17)
+  ✔ Manter aplicação apenas no idioma PT-BR @done(20-05-02 19:17)
   ☐ Create README.MD onto GitHub
 
   General Styles:
@@ -19,19 +19,19 @@ General:
     ✔ Create generic file for all form controls @done(20-04-21 21:36)
   
   Bills:
-    ☐ Sort items per DueDate asc (to show next bill to pay at first)
+    ✔ Sort items per DueDate asc (to show next bill to pay at first) @done(20-05-02 19:16)
     ☐ Create a summary area to show the SUM of all items added
-    ☐ Refactor the entire code
-    ☐ Add bar code information in each item
-    ☐ Mark with RED color items that is overdued
+    ✔ Refactor the entire code @done(20-05-02 19:16)
+    ✔ Add bar code information in each item @done(20-05-02 19:16)
+    ✔ Mark with RED color items that is overdued @done(20-05-02 19:17)
     ☐ Mark with YELLOW color items that is about to overdue
     ☐ Put to the end of list all items that is marked as PAID
     ☐ Create area for other button that might need to exists @low 
-    ☐ Add Refresh functionality to reload data
-    ☐ Create menu for each item
-      ☐ Edit menu
+    ✔ Add Refresh functionality to reload data @done(20-05-02 19:17)
+    ☐ Create swipe menu for each item
+      ☐ Edit
       ☐ Set as paid
-      ☐ Remove item
+      ☐ Delete
 
     Filters:
       ☐ Add filter area
@@ -48,7 +48,7 @@ General:
       ☐ BarCode should have maks? @low 
       ✔ Change date format to BR format @started(20-04-22 18:15) @done(20-04-22 18:17) @lasted(2m14s)
       ✔ Fix CHECKBOX that is breaking the application @critical @started(20-04-22 18:17) @done(20-04-22 18:42) @lasted(26m)
-      ☐ Create repeated items if the REPEAT button is checked
+      ✔ Create repeated items if the REPEAT button is checked @done(20-05-04 21:07)
         //each item will have the same DueDate + 1month
         //will repeat until the value informed on "RepeatQuantity"
       ✔ Adjust font size for all fields @done(20-04-21 23:33)
@@ -57,6 +57,9 @@ General:
     Edit Form:
       ☐ Retrieve item by "key" property
       ☐ Display information of auditing (Created_At and Modified_At)
+
+    Custom Alert:
+      ☐ Criar componente de Alerta customizado
 
 
 Archive:

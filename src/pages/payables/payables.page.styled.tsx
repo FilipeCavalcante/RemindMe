@@ -10,17 +10,14 @@ export const PayablesList = styled.View`
     flex: 1;
 `;
 
-export const PayableItem = styled.TouchableOpacity`
+export const PayableItem = styled.View`
     flex: 1;
     flex-direction: row;
     background-color: ${DefaultColors.white};
-    margin: 6px;
-    border-bottom-width: 1px;
-    border-bottom-color: ${DefaultColors.color1};
-    border-left-width: 4px;
-    border-left-color: ${(props) =>
-        props.isOverdued ? DefaultColors.danger : DefaultColors.success};
+    border: 1px solid #F1f1f1;
     padding: 14px;
+    margin-bottom: 6px;
+    height: 80px
 `;
 
 export const PayableItemInfo = styled.View`
@@ -47,9 +44,13 @@ export const PayableItemValueText = styled.Text`
     color: ${DefaultColors.color3};
 `;
 
-export const styles = StyleSheet.create({
+export const payablesStyle = StyleSheet.create({
     formControl: {
         margin: 10,
         padding: 1,
+    },
+
+    swipeOut: {
+        flex: 1,
     },
 });

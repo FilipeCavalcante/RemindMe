@@ -38,7 +38,8 @@ export default function CreatePayableForm(props: any) {
     return (
         <Formik
             initialValues={createEntityInitialValues}
-            onSubmit={(values) => onSubmit(values)}>
+            onSubmit={(values) => onSubmit(values)}
+        >
             {({ values, handleChange, handleSubmit, setFieldValue }) => (
                 <>
                     <LoadingIndicator isVisible={isLoading} size={60} />

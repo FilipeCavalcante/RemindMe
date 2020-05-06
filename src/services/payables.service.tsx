@@ -4,25 +4,21 @@ import {
     IPayableDto,
     PayableDto,
 } from '@models/payables.model';
-import { save, retrieve, saveMultiple } from '@gateways/gateway';
+import { save, retrieve, saveMultiple, remove } from '@gateways/gateway';
 import { GatewayConstants } from '@shared/keyConstants';
 import { SortType } from '@shared/enums/sortType.enum';
 import { MonthNames } from '@shared/date.utils';
 
 export function savePayable(entity: ICreatePayableDto) {
     if (entity) {
-        if (
-            entity.repeat &&
-            entity.quantityRepeat &&
-            entity.quantityRepeat > 0
-        ) {
+        if (entity.repeat && entity.quantityRepeat && entity.quantityRepeat > 0) {
             const entities = defineMultiplePayables(entity);
             saveMultiple(GatewayConstants.payableKeyName, [
                 entity,
                 ...entities,
-            ]).then((result) => {});
+            ]).then((result) => { });
         } else {
-            save(GatewayConstants.payableKeyName, entity).then((result) => {});
+            save(GatewayConstants.payableKeyName, entity).then((result) => { });
         }
     }
 }
@@ -31,9 +27,13 @@ export async function retrievePayables(
     initial = 0,
     top?: number,
 ): Promise<IPayableDto[]> {
-    let response = await retrieve(GatewayConstants.payableKeyName);
-    let result = parseList(response);
+    const response = await retrieve(GatewayConstants.payableKeyName);
+    const result = parseList(response);
     return result.slice(initial, top);
+}
+
+export async function deletePayable(itemId: string, callback?: any) {
+    await remove(itemId, callback);
 }
 
 function parseList(data: any): IPayableDto[] {
@@ -41,7 +41,7 @@ function parseList(data: any): IPayableDto[] {
 
     if (data.length === 0) return [];
 
-    let result: IPayableDto[] = [];
+    const result: IPayableDto[] = [];
 
     data.map((item) => result.push(PayableDto.fromJS(item)));
 
@@ -49,20 +49,16 @@ function parseList(data: any): IPayableDto[] {
 }
 
 function defineMultiplePayables(data: ICreatePayableDto) {
-    let multiples: ICreatePayableDto[] = [];
+    const multiples: ICreatePayableDto[] = [];
 
-    let repeatCount = Number(data.quantityRepeat || 1);
+    const repeatCount = Number(data.quantityRepeat || 1);
     for (let c = 1; c <= repeatCount; c++) {
-        let next = CreatePayableDto.clone(data);
+        const next = CreatePayableDto.clone(data);
         next.barCode = '';
         next.dueDate = new Date(
             next.dueDate?.setMonth(next.dueDate.getMonth() + c),
         );
-        next.title =
-            next.title +
-            ` (${
-                MonthNames[next.dueDate?.getMonth() || 0]
-            }-${next.dueDate?.getFullYear()})`;
+        next.title = `${next.title} (${MonthNames[next.dueDate?.getMonth() || 0]}-${next.dueDate?.getFullYear()})`;
         multiples.push(next);
     }
 
@@ -80,20 +76,18 @@ export function sortPayableBy(
             case SortType.String: {
                 if (sortOrder?.toLowerCase() === 'desc') {
                     return a[columnName] < b[columnName] ? 1 : -1;
-                } else {
-                    return a[columnName] > b[columnName] ? 1 : -1;
                 }
+                return a[columnName] > b[columnName] ? 1 : -1;
             }
             case SortType.Date: {
                 if (sortOrder?.toLowerCase() === 'desc') {
                     return new Date(a[columnName]) < new Date(b[columnName])
                         ? 1
                         : -1;
-                } else {
-                    return new Date(a[columnName]) > new Date(b[columnName])
-                        ? 1
-                        : -1;
                 }
+                return new Date(a[columnName]) > new Date(b[columnName])
+                    ? 1
+                    : -1;
             }
             default:
                 return 0;

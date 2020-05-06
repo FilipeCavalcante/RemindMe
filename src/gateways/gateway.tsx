@@ -34,7 +34,7 @@ export async function saveMultiple(key: string, data: any[], callback?: any) {
 
         await AsyncStorage.setItem(
             key,
-            JSON.stringify([ ...stored, ...data ]),
+            JSON.stringify([...stored, ...data]),
             callback
         );
     }
@@ -49,7 +49,7 @@ export async function save(key: string, data: any, callback?: any) {
 
     await AsyncStorage.setItem(
         key,
-        JSON.stringify([ ...stored, dataToSave ]),
+        JSON.stringify([...stored, dataToSave]),
         callback,
     );
 }
@@ -61,4 +61,8 @@ export async function retrieve(key: string) {
 
 export function clearStorage() {
     AsyncStorage.clear();
+}
+
+export async function remove(itemId: string | any, callBack?: any) {
+    await AsyncStorage.removeItem(itemId, callBack)
 }
