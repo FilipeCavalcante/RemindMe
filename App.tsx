@@ -10,15 +10,12 @@ import MainPage from '@pages/main/main-page';
 const App: () => React$Node = () => {
     return (
         <>
-            <NavigationContainer>
-                <StatusBar />
-                <SafeAreaView
-                    style={{
-                        flex: 1,
-                        backgroundColor: DefaultColors.background,
-                    }}>
-                    <MainPage />
-                </SafeAreaView>
+            <StatusBar backgroundColor={DefaultColors.color5} barStyle="dark-content" />
+            <NavigationContainer style={{
+                flex: 1,
+                backgroundColor: DefaultColors.background,
+            }}>
+                <MainPage />
             </NavigationContainer>
         </>
     );

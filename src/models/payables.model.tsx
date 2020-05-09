@@ -27,8 +27,8 @@ export interface IPayableDto {
     createdBy: string | undefined;
     updatedAt: Date | undefined;
     updatedBy: string | undefined;
-    paymentDate?: Date | undefined;
-    overdue?: Boolean | undefined;
+    paidAt?: Date | undefined;
+    isPaid?: Boolean | undefined;
 }
 
 //Initial Values;
@@ -85,10 +85,10 @@ export class PayableDto implements IPayableDto {
     createdBy: string | undefined;
     updatedAt: Date | undefined;
     updatedBy: string | undefined;
-    paymentDate?: Date | undefined;
-    overdue?: Boolean | undefined;
+    paidAt?: Date | undefined;
+    isPaid?: Boolean | undefined;
 
-    constructor() {}
+    constructor() { }
 
     init(data?: any) {
         if (data) {
@@ -98,8 +98,8 @@ export class PayableDto implements IPayableDto {
             this.createdAt = new Date(data.createdAt) || null;
             this.createdBy = '-1';
             this.dueDate = new Date(data.dueDate);
-            this.overdue = data.overdue || false;
-            this.paymentDate = new Date(data.paymentDate) || null;
+            this.isPaid = data.isPaid || false;
+            this.paidAt = new Date(data.paidAt) || null;
             this.repeat = data.repeat;
             this.quantityRepeat = data.quantityRepeat;
             this.updatedAt = new Date(data.updatedAt) || null;

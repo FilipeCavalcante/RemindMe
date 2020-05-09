@@ -1,6 +1,13 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import { Guid } from 'guid-typescript'
 
+
+const endpointApi = 'https://5eb317e7974fee0016ecd297.mockapi.io/';
+const headerRequest = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+}
+
 function setAuditDates(entity: any) {
     if (!entity.hasOwnProperty('createdAt')) {
         entity['createdAt'] = new Date();
@@ -27,17 +34,14 @@ export async function saveMultiple(key: string, data: any[], callback?: any) {
     let stored = await retrieve(key);
     if (!stored) stored = [];
 
-    if (data.length > 0) {
-        data.forEach((item) => {
-            item = setKey(item, key);
-        });
+    // if (data.length > 0) {
+    //     data.forEach((item) => {
+    //         item = setKey(item, key);
 
-        await AsyncStorage.setItem(
-            key,
-            JSON.stringify([...stored, ...data]),
-            callback
-        );
-    }
+    //     });
+
+    data.forEach(item => save(key, item));
+
 }
 
 export async function save(key: string, data: any, callback?: any) {
@@ -45,24 +49,36 @@ export async function save(key: string, data: any, callback?: any) {
     if (!stored) stored = [];
 
     let dataToSave = setKey(data, key);
-    console.debug(dataToSave);
 
-    await AsyncStorage.setItem(
-        key,
-        JSON.stringify([...stored, dataToSave]),
-        callback,
-    );
+    await fetch(`${endpointApi}\\${key}`, {
+        method: 'POST',
+        headers: headerRequest,
+        body: JSON.stringify(dataToSave),
+    })
+}
+
+export async function retrieveBy(key: string, itemId: string | any) {
+    const response = await fetch(`${endpointApi}\\${key}\\${itemId}`);
+    return await response.json();
 }
 
 export async function retrieve(key: string) {
-    const data = await AsyncStorage.getItem(key);
-    return JSON.parse(data || '[]');
+    const response = await fetch(`${endpointApi}\\${key}`);
+    return await response.json();
+
 }
 
-export function clearStorage() {
-    AsyncStorage.clear();
+export async function remove(key: string, itemId: string | any, callBack?: any) {
+    await fetch(`${endpointApi}\\${key}\\${itemId}`, {
+        method: 'DELETE',
+        headers: headerRequest
+    })
 }
 
-export async function remove(itemId: string | any, callBack?: any) {
-    await AsyncStorage.removeItem(itemId, callBack)
+export async function udpate(key: string, itemId: string | any, data: any, callback?: any) {
+    await fetch(`${endpointApi}\\${key}\\${itemId}`, {
+        method: 'PUT',
+        headers: headerRequest,
+        body: JSON.stringify(data)
+    });
 }

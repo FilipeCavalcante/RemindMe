@@ -21,17 +21,20 @@ import { LoadingIndicator } from '@components/controls/indicators.component';
 export default function CreatePayableForm(props: any) {
     const [isLoading, setLoadingState] = useState(false);
 
-    function goBack() {
-        props.cancelForm();
+    const cancel = () => {
+        goToPayables();
+    }
+
+    const goToPayables = () => {
+        props.submitForm();
     }
 
     const onSubmit = (values: any) => {
-        setLoadingState(true);
         setTimeout(() => {
             const entity = new CreatePayableDto(values);
             savePayable(entity);
             setLoadingState(false);
-            goBack();
+            goToPayables();
         }, 2000);
     };
 
@@ -90,7 +93,7 @@ export default function CreatePayableForm(props: any) {
                                 label='Salvar'
                                 primary={true}
                             />
-                            <FormButton onPress={goBack} label='Cancelar' />
+                            <FormButton onPress={cancel} label='Cancelar' />
                         </ButtonArea>
                     </FormContainer>
                 </>

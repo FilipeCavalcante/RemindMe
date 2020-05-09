@@ -4,10 +4,14 @@ import {
     IPayableDto,
     PayableDto,
 } from '@models/payables.model';
-import { save, retrieve, saveMultiple, remove } from '@gateways/gateway';
+import { save, retrieve, saveMultiple, remove, udpate, retrieveBy } from '@gateways/gateway';
 import { GatewayConstants } from '@shared/keyConstants';
 import { SortType } from '@shared/enums/sortType.enum';
 import { MonthNames } from '@shared/date.utils';
+
+export function updatePayable(itemId: number | any, data: IPayableDto, callback?: any) {
+    udpate(GatewayConstants.payableKeyName, itemId, data).then(callback);
+}
 
 export function savePayable(entity: ICreatePayableDto) {
     if (entity) {
@@ -23,17 +27,31 @@ export function savePayable(entity: ICreatePayableDto) {
     }
 }
 
+export async function retrievePayableBy(itemId: string | any): Promise<IPayableDto> {
+    var response = await retrieveBy(GatewayConstants.payableKeyName, itemId);
+    return PayableDto.fromJS(response);
+}
+
 export async function retrievePayables(
     initial = 0,
     top?: number,
 ): Promise<IPayableDto[]> {
     const response = await retrieve(GatewayConstants.payableKeyName);
-    const result = parseList(response);
+    let result = parseList(response);
+    result = result.filter(item => {
+        return !item.isPaid
+    });
     return result.slice(initial, top);
 }
 
+export async function markPayableAsPaid(item: IPayableDto, isPaid: boolean) {
+    item.isPaid = isPaid;
+    item.paidAt = new Date();
+    await udpate(GatewayConstants.payableKeyName, item.id, item);
+}
+
 export async function deletePayable(itemId: string, callback?: any) {
-    await remove(itemId, callback);
+    await remove(GatewayConstants.payableKeyName, itemId, callback);
 }
 
 function parseList(data: any): IPayableDto[] {

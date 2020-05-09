@@ -4,10 +4,11 @@ import PageHeader from '@components/header/page.header';
 import CreatePayableForm from '@components/payables/create-payable.form';
 import { PayablesPageContainer } from '@pages/payables/payables.page.styled';
 import { GeneralConst } from '@shared/general.constants';
+import { ScrollView } from 'react-native';
 
 export default function CreatePayablePage({ navigation }: any) {
-    const returnToPayablePage = () => {
-        navigation.navigate(GeneralConst.payablePage);
+    const returnToPayablePage = (result: boolean) => {
+        navigation.navigate(GeneralConst.payablePage, { toRefreshPage: true });
     };
 
     return (
@@ -16,7 +17,9 @@ export default function CreatePayablePage({ navigation }: any) {
                 pageTitle='Novo boleto'
                 openDrawer={navigation.openDrawer}
             />
-            <CreatePayableForm cancelForm={returnToPayablePage} />
+            <ScrollView>
+                <CreatePayableForm submitForm={returnToPayablePage} />
+            </ScrollView>
         </PayablesPageContainer>
     );
 }

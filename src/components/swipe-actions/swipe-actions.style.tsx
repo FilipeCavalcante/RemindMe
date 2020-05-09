@@ -12,8 +12,7 @@ export const swipeStyles = StyleSheet.create({
         backgroundColor: DefaultColors.danger,
         justifyContent: 'center',
         textAlignVertical: 'center',
-        marginBottom: 6,
-        minHeight: 79,
-        maxWidth: 200
+        minHeight: 90,
+        maxWidth: 200,
     },
 });
